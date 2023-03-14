@@ -49,11 +49,11 @@ function App() {
               setNewNumber('')
             })
             .catch(error => {
-              setErrorMessage(`${newName} has already been removed from the server`)
+              setErrorMessage(error.response.data.error)
               setTimeout(() => {
                 setErrorMessage(null)
               }, 5000)
-              setPersons(persons.filter(person => person.id !== persons.find(person => person.name === newName).id))
+              //setPersons(persons.filter(person => person.id !== persons.find(person => person.name === newName).id))
             })
             return
           }
@@ -69,6 +69,12 @@ function App() {
         }, 5000)
         setNewName('')
         setNewNumber('')
+      })
+      .catch(error => {
+        setErrorMessage(error.response.data.error)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
   }
 
